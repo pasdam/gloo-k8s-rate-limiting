@@ -1,0 +1,11 @@
+apiVersion: gloo.solo.io/v1
+kind: Upstream
+metadata:
+  name: gloo-test-ratelimit-8081
+  namespace: gloo-test
+spec:
+  kube:
+    serviceName: ratelimit
+    serviceNamespace: gloo-test
+    servicePort: 8081
+  useHttp2: true

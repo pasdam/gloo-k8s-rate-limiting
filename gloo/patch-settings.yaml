@@ -1,0 +1,29 @@
+spec:
+  ratelimit:
+    descriptors:
+      - key: generic_key
+        value: slowpath
+        rate_limit:
+          requests_per_unit: 2
+          unit: MINUTE
+      - descriptors:
+          - key: account
+            rate_limit:
+              requests_per_unit: 1
+              unit: MINUTE
+        key: plan
+        value: BASIC
+      - descriptors:
+          - key: account
+            rate_limit:
+              requests_per_unit: 2
+              unit: MINUTE
+        key: plan
+        value: PLUS
+  ratelimitServer:
+    denyOnFail: true
+    rateLimitBeforeAuth: false
+    ratelimitServerRef:
+      name: gloo-test-ratelimit-8081
+      namespace: gloo-test
+    requestTimeout: 100ms
