@@ -6,7 +6,7 @@ NS=gloo-test
 
 # install gloo
 helm repo add gloo https://storage.googleapis.com/solo-public-helm
-helm repo update
+helm repo update gloo
 helm upgrade --install gloo gloo/gloo \
   --version "1.11.12" \
   --create-namespace \
