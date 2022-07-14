@@ -29,5 +29,7 @@ kubectl apply -f $SCRIPT_DIR/ratelimit/service.yaml
 
 # configure Gloo
 kubectl apply -f $SCRIPT_DIR/petstore/upstream.yaml
+kubectl wait --for condition="established" -f $SCRIPT_DIR/petstore/upstream.yaml
 kubectl apply -f $SCRIPT_DIR/ratelimit/upstream.yaml
+kubectl wait --for condition="established" -f $SCRIPT_DIR/ratelimit/upstream.yaml
 kubectl apply -f $SCRIPT_DIR/gloo/virtual-service.yaml
