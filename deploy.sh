@@ -8,10 +8,11 @@ NS=gloo-test
 helm repo add gloo https://storage.googleapis.com/solo-public-helm
 helm repo update
 helm upgrade --install gloo gloo/gloo \
-        --create-namespace \
-        --namespace $NS \
-        --values $SCRIPT_DIR/gloo/helm-values.yaml \
-        --wait --timeout 300s
+  --version "1.11.12" \
+  --create-namespace \
+  --namespace $NS \
+  --values $SCRIPT_DIR/gloo/helm-values.yaml \
+  --wait --timeout 300s
 kubectl patch settings default -n $NS --type merge --patch "$(cat $SCRIPT_DIR/gloo/patch-settings.yaml)"
 
 # install backend service
